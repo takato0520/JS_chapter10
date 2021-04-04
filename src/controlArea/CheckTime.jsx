@@ -1,17 +1,30 @@
-export default function CheckTime() {
-    const canvas = document.getElementById('canvas')
-    const context = canvas.getContext('2d')
-    const time = context.getAttribute('time') //読み込み日時の取得
+import React, { useState } from "react"
+import Common from "../Common"
 
-    if (time === null) { return }
+const CheckTimeContext = React.createContext()
 
-    if (time !== timeOld) {
-        const imgDataCache = context.getImageData(
-            0, 0, canvas.width, canvas.height
-        )
+const CheckTimeProvider = ({ children }) => {
+    const ctx = Common()
+    // const time = ctx.canvas.getAttribute('time') //読み込み日時の取得
+    const [imgDataCache, setImgDataCache] = useState(null)
+    // const [timeOld, setTimeOld] = useState(time)
 
-        timeOld = time
+    // if (time === null) { return }
 
-        return true
-    }
+    // if (time !== timeOld) {
+    //     setImgDataCache(ctx.context.getImageData(
+    //         0, 0, ctx.canvas.width, ctx.canvas.height
+    //     ))
+
+    //     setTimeOld(time)
+    // }
+
+    return (
+        <CheckTimeContext.Provider value={[imgDataCache, setImgDataCache]}>
+            {children}
+        </CheckTimeContext.Provider>
+
+    )
 }
+
+export { CheckTimeContext, CheckTimeProvider }

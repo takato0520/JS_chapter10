@@ -1,16 +1,10 @@
-import { useState, useEffect } from 'react'
-import { GetContext } from '../Canvas'
-import CheckTime from './CheckTime'
-// import Button from '../Button'
-
-
+import { useContext } from 'react'
+import Common from '../Common'
+import { CheckTimeContext } from './CheckTime'
 const Sepia = () => {
-    const [ctx, setCtx] = useState(null)
-
-    useEffect(() => {
-        setCtx(GetContext())
-    }, [])
-
+    const ctx = Common()
+    const [imgDataCache, setImgDataCache] = useContext(CheckTimeContext)
+    console.log(imgDataCache)
     const handleSubmit = (e) => {
         e.preventDefault()
         const w = ctx.canvas.width
@@ -32,7 +26,10 @@ const Sepia = () => {
             data[i + 2] = Math.trunc(Y * 145 / 255)
         }
 
+        setImgDataCache(ctx.context.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height))
         ctx.context.putImageData(imgDt, 0, 0)
+        console.log(imgDt)
+        console.log(ctx.context.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height))
     }
 
 

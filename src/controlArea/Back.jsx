@@ -1,19 +1,16 @@
-import { useState, useEffect } from 'react'
-import { GetContext } from '../Canvas'
-import CheckTime from './CheckTime'
+import { useContext } from 'react'
+import Common from '../Common'
+import { CheckTimeContext } from './CheckTime'
 
 const Back = () => {
-    const [ctx, setCtx] = useState(null)
-
-    useEffect(() => {
-        setCtx(GetContext())
-    }, [])
-
+    const ctx = Common()
+    const [imgDataCache, setImgDataCache] = useContext(CheckTimeContext)
+    console.log(imgDataCache)
     const handleSubmit = (e) => {
         e.preventDefault()
-        const imgDataCache = CheckTime.imgDataCache
         console.log(imgDataCache)
         ctx.context.putImageData(imgDataCache, 0, 0)
+        setImgDataCache(ctx.context.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height))
     }
 
     return (

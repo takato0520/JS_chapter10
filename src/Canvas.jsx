@@ -1,21 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import Common from "./Common"
 import ReadImage from './ReadImage'
 import DrawImage from './DrawImage'
 import styled from 'styled-components'
 
-const GetContext = () => {
-    const canvas = document.getElementById("canvas")
-    const context = canvas.getContext("2d")
-    return ({ canvas, context })
-}
-
 const Canvas = () => {
+    const ctx = Common()
     const [img, setImg] = useState(null)
-    const [ctx, setCtx] = useState(null)
-
-    useEffect(() => {
-        setCtx(GetContext())
-    }, [])
 
     console.log(img)
 
@@ -25,8 +16,8 @@ const Canvas = () => {
             console.log(img)
             ReadImage(img).then(function (url) {
                 const dtURL = url
-                DrawImage(dtURL, ctx.canvas, ctx.context)
                 const elNoView = document.getElementById("noView")
+                DrawImage(dtURL, ctx.canvas, ctx.context)
                 elNoView.style.display = "none"
                 ctx.canvas.style.display = "inline"
             })
@@ -60,7 +51,7 @@ const Canvas = () => {
 const FileInput = styled.input`
 display:none;`
 
-export { Canvas, GetContext }
+export default Canvas
 
 
 

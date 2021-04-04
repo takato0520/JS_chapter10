@@ -1,5 +1,6 @@
 import React from 'react'
-import { Canvas } from './Canvas'
+import Canvas from './Canvas'
+import { CheckTimeContext, CheckTimeProvider } from './controlArea/CheckTime'
 import Sepia from './controlArea/Sepia'
 import Back from './controlArea/Back'
 
@@ -12,8 +13,10 @@ const App = () => {
                 <Canvas />
 
                 <div id="controlArea" class="uiArea">
-                    <Sepia />
-                    <Back />
+                    <CheckTimeProvider>
+                        <Sepia />
+                        <Back />
+                    </CheckTimeProvider>
                 </div>
 
                 <div id="commentArea" class="uiArea">
