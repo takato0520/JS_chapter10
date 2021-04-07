@@ -9,8 +9,8 @@ const Sepia = () => {
     console.log(imgDataCache)
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (counter === 0) {
-            setCounter(counter + 1)
+        if (!counter) {
+            setCounter(true)
             console.log(counter)
             const w = ctx.canvas.width
             const h = ctx.canvas.height

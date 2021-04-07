@@ -6,7 +6,7 @@ const CounterContext = React.createContext()
 
 const Provider = ({ children }) => {
     const [imgDataCache, setImgDataCache] = useState(null)
-    const [counter, setCounter] = useState(0)
+    const [counter, setCounter] = useState(false)
 
     return (
         <CounterContext.Provider value={[counter, setCounter]}>

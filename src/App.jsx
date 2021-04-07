@@ -1,4 +1,6 @@
 import React from 'react'
+// import { DnDProvider } from 'react-dnd'
+// import { HTML5Backend } from 'react-dnd-html-backend'
 import Canvas from './Canvas'
 import { Provider } from './controlArea/CheckTime'
 import Sepia from './controlArea/Sepia'

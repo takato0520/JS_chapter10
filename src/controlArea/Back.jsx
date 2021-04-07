@@ -12,8 +12,8 @@ const Back = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(counter)
-        if (counter === 1) {
-            setCounter(counter - 1)
+        if (counter) {
+            setCounter(false)
             console.log(imgDataCache)
             ctx.context.putImageData(imgDataCache, 0, 0)
             setImgDataCache(ctx.context.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height))
